@@ -10,4 +10,10 @@ export class User extends BaseEntity {
 
   @Column()
   userName: string;
+
+  @Column()
+  password: string;
+
+  @Column({ default: true })
+  isActive: boolean;
 }

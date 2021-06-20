@@ -9,8 +9,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/src
-      - .:/src/node_modules
+      - ./:/server
+      - .:/server/node_modules
     depends_on:
       - mysql_server
     links:
