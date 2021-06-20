@@ -1,11 +1,11 @@
 {
   "type": "mysql",
-  "host": "localhost",
-  "port": 3307,
+  "host": "mysql_server",
+  "port": 3306,
   "username": "nrjshka",
   "password": "myTestPassword",
   "database": "notes_db",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true,
-  "insecureAuth": true
+  "logging": true
 }
