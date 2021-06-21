@@ -53,8 +53,5 @@ services:
       PMA_HOST: mysql_server
       MYSQL_ROOT_PASSWORD: myTestPassword
 
-networks:
-  notes_network:
-
 volumes:
   db_data:
