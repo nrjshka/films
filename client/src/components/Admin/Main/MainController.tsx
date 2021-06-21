@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
-const Main: React.FC = () => {
+const MainController: React.FC = () => {
   return <div>Admin view</div>;
 };
 
-export { Main };
+export { MainController };

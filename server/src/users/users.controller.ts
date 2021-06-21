@@ -1,3 +1,4 @@
+import { CreateUserDto } from './dto/user.dto';
 import { User } from './users.entity';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
@@ -7,17 +8,13 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private service: UsersService) {}
 
-  @Get()
-  findAll() {
-    return this.service.getUsers();
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.service.create(createUserDto);
   }
 
   @Get(':id')
-  get(@Param() params) {
-    return this.service.getUser(params.id);
-  }
-
-  @Post() create(@Body() user: User) {
-    return this.service.createUser(user);
+  show(@Param('id') id: string) {
+    return this.service.showById(+id);
   }
 }
