@@ -1,6 +1,6 @@
 FROM node:13.12.0-alpine as build
 
-WORKDIR /client
+WORKDIR /builddir
 
 COPY package*.json ./
 
@@ -12,7 +12,7 @@ RUN npm build
 
 # production env
 FROM nginx:stable-alpine
-COPY --from=build /client/dist /usr/share/nginx/html
+COPY --from=build /builddir/dist /usr/share/nginx/html
 
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
