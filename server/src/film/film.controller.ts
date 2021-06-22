@@ -11,6 +11,11 @@ export class FilmController {
     return this.service.create(createFilmDto);
   }
 
+  @Post('/edit')
+  editFilm(@Body() editedFilmDto: EditFilmDtoEditFilmDto) {
+    return this.service.edit(editedFilmDto);
+  }
+
   @Get('/popular')
   getPopular() {
     return this.service.getPopularFilms();

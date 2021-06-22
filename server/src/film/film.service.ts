@@ -1,4 +1,4 @@
-import { CreateFilmDto, FilterFilmDto } from './dto/film.dto';
+import { CreateFilmDto, EditFilmDto, FilterFilmDto } from './dto/film.dto';
 import { Injectable } from '@nestjs/common';
 import { Film } from './film.entity';
 
@@ -8,6 +8,22 @@ export class FilmService {
     const film = await Film.create(filmDto);
 
     await film.save();
+
+    return film;
+  }
+
+  async edit(editedDto: EditFilmDto) {
+    const { id, ...restKeys } = editedDto;
+
+    const film = await Film.findOne(id);
+
+    for (let key in restKeys) {
+      if (key in film) {
+        film[key] = editedDto[key];
+      }
+    }
+
+    film.save();
 
     return film;
   }
