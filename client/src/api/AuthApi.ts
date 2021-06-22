@@ -20,9 +20,13 @@ class AuthApi {
 
     return this.api.get('/auth', { headers })
   }
+
+  public login(params: { email: string; password: string }) {
+    return this.api.post('/auth', params)
+  }
 }
 
-const api = new ApiService(process.env.BACKEND_URL)
+const api = new ApiService('http://localhost:3000')
 const authApi = new AuthApi(api)
 
 export { AuthApi, authApi }

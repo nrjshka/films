@@ -1,46 +1,31 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { Row, Col } from 'antd'
 
 import { Link } from 'react-router-dom'
 
-import { Form, Input, Button, Row, Col } from 'antd'
+import { Form } from '../../../ui'
+import { checkLoginForm } from '../../../redux'
 
-const formLayout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 20,
-  },
-}
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 20,
-  },
-}
+type FormType = { email: string; password: string }
 
-const Login = () => (
-  <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
-    <Form {...formLayout}>
-      <Form.Item name="email" label="Email:" rules={[{ required: true }]}>
-        <Input type="email" />
-      </Form.Item>
-      <Form.Item name="password" label="Password:" rules={[{ required: true }]}>
-        <Input type="password" />
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+const Login = () => {
+  const dispatch = useDispatch()
 
+  const onSubmit = async (value: FormType) => {
+    await dispatch(checkLoginForm(value))
+  }
+
+  return (
+    <Form<FormType> onSubmit={onSubmit}>
       <Row justify="center">
         <Col xs={12}>
           <Link to="/admin/registration">Or sign up</Link>
         </Col>
       </Row>
     </Form>
-  </Row>
-)
+  )
+}
 
 export { Login }

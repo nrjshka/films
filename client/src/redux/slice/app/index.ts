@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loadApp, validateToken } from './middleware'
+import { loadApp, validateToken, checkLoginForm } from './middleware'
 
 import { AppState } from './types'
 
@@ -37,6 +37,20 @@ const search = createSlice({
       state.user = {
         isAuthorized: true,
         token,
+      }
+    })
+
+    builder.addCase(checkLoginForm.rejected, (state, action) => {
+      state.user = {
+        isAuthorized: false,
+        token: null,
+      }
+    })
+
+    builder.addCase(checkLoginForm.fulfilled, (state, action) => {
+      state.user = {
+        isAuthorized: true,
+        token: action.payload,
       }
     })
   },

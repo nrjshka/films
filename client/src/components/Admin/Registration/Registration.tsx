@@ -1,7 +1,11 @@
-import { memo } from 'react'
+import React, { memo } from 'react'
+
+import { Form as FormTemplate } from '../../../ui'
 
 const Registration = memo(function Registration() {
-  return <div>Registration</div>
+  const onSubmit = () => {}
+
+  return <FormTemplate isRegistration onSubmit={onSubmit} />
 })
 
 export { Registration }

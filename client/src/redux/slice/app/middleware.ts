@@ -12,6 +12,25 @@ import { AppActionTypes } from './types'
 import { authApi } from '../../../api/AuthApi'
 import { setStorageValue } from '../../../utils/localStorage'
 
+const checkLoginForm = createAsyncThunk(
+  AppActionTypes.LOGIN,
+  async (params: { email: string; password: string }, { rejectWithValue }) => {
+    try {
+      const data = await authApi.login(params)
+
+      // @ts-ignore
+      const { access_token: token } = data
+
+      await authApi.setTokenHeader(token)
+      setStorageValue('token', token)
+
+      return token
+    } catch (e) {
+      return rejectWithValue({ message: 'Error with loggin' })
+    }
+  },
+)
+
 const validateToken = createAsyncThunk(AppActionTypes.TOKEN, async (token: string, { rejectWithValue }) => {
   try {
     await authApi.validateToken(token)
@@ -39,4 +58,4 @@ const loadApp = createAsyncThunk(AppActionTypes.LOAD, async (_, { dispatch }) =>
   await dispatch(validateToken(token || ''))
 })
 
-export { loadApp, validateToken }
+export { loadApp, validateToken, checkLoginForm }
