@@ -1,14 +1,12 @@
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
-import { Layout } from 'antd'
-
-import { Header, PagesContainer, Content } from '../../ui'
-
-import { SavedMoviesList, MainPage } from '..'
 import { Switch, Route } from 'react-router-dom'
 
 import { SpinStyled, SpinContainer } from './Styled'
 import { isAppLoaded } from '../../redux'
+
+import { AdminRoutes } from './Admin.routes'
+import { ClientRoutes } from './Client.routes'
 
 const App: React.FC = memo(function App() {
   const loading = useSelector(isAppLoaded)
@@ -22,17 +20,10 @@ const App: React.FC = memo(function App() {
   }
 
   return (
-    <PagesContainer>
-      <Layout>
-        <Header />
-        <Content>
-          <Switch>
-            <Route exact path="/:category(watchLater|favourite)" component={SavedMoviesList} />
-            <Route path="*" component={MainPage} />
-          </Switch>
-        </Content>
-      </Layout>
-    </PagesContainer>
+    <Switch>
+      <Route path="/admin*" component={AdminRoutes} />
+      <Route path="*" component={ClientRoutes} />
+    </Switch>
   )
 })
 
