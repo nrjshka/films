@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { CreateFilmDto, FilterFilmDto } from './dto/film.dto';
+import { CreateFilmDto, FilterFilmDto, EditFilmDto } from './dto/film.dto';
 import { FilmService } from './film.service';
 
 @Controller('film')
@@ -12,7 +12,7 @@ export class FilmController {
   }
 
   @Post('/edit')
-  editFilm(@Body() editedFilmDto: EditFilmDtoEditFilmDto) {
+  editFilm(@Body() editedFilmDto: EditFilmDto) {
     return this.service.edit(editedFilmDto);
   }
 
