@@ -17,7 +17,7 @@ const SavedMoviesList: React.FC<RouteComponentProps<{ category: SupportedStores 
   const data = useSelector(getSavedMovieData(category))
 
   const movies = data.filter(
-    ({ title, overview }) => isSubString(title, searchText) || isSubString(overview, searchText),
+    ({ title, description }) => isSubString(title, searchText) || isSubString(description, searchText),
   )
 
   return <MovieList movies={movies} />

@@ -2,7 +2,7 @@ type MovieType = {
   id: number
   original_title: string
   original_language: string
-  overview: string
+  description: string
   release_date: string
   title: string
   vote_average: number
@@ -18,7 +18,7 @@ type MovieType = {
 const movieMockNowYouSee: MovieType = {
   poster_path: '/A81kDB6a1K86YLlcOtZB27jriJh.jpg',
   adult: false,
-  overview:
+  description:
     'One year after outwitting the FBI and winning the public’s adulation with their mind-bending spectacles, the Four Horsemen resurface only to find themselves face to face with a new enemy who enlists them to pull off their most dangerous heist yet.',
   release_date: '2016-06-02',
   genre_ids: [28, 12, 35, 80, 9648, 53],
@@ -36,7 +36,7 @@ const movieMockNowYouSee: MovieType = {
 const moviewMockSuicide: MovieType = {
   poster_path: '/xFw9RXKZDvevAGocgBK0zteto4U.jpg',
   adult: false,
-  overview:
+  description:
     'From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.',
   release_date: '2016-08-03',
   genre_ids: [14, 28, 80],

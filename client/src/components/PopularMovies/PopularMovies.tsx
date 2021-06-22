@@ -6,7 +6,6 @@ import { MovieList } from '../MovieList'
 const PopularMovies: React.FC = memo(function MainPage(props) {
   const dispatch = useDispatch()
   const popularMovies = useSelector(getPopularMovies)
-  debugger
   const isPopularMovieEmpty = !popularMovies.length
 
   useEffect(() => {

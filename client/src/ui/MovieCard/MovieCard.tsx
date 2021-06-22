@@ -16,7 +16,7 @@ const MovieCard: React.FC<MovieCardType> = memo(function MovieCard(props) {
     poster_path,
     release_date,
     title,
-    overview,
+    description,
     vote_average,
     onWatchLater,
     onLike,
@@ -63,7 +63,7 @@ const MovieCard: React.FC<MovieCardType> = memo(function MovieCard(props) {
       ]}
     >
       <Title>{title}</Title>
-      <Overview title={overview}>{overview}</Overview>
+      <Overview title={description}>{description}</Overview>
 
       <TagsContainer>
         <DateTagWrapper>
