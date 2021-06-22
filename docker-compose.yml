@@ -9,21 +9,6 @@ services:
   #   ports:
   #     - 80:80
   #   volumes:
-  #     - /app/node_modules
-  #     - .:/app
-  #   depends_on:
-  #     - server
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-
-  # frontend_films:
-  #   build:
-  #     context: ./films
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   ports:
-  #     - 80:80
-  #   volumes:
   #     - /films/node_modules
   #     - .:/films
   #   depends_on:
