@@ -7,4 +7,7 @@ const popularStoreSelector = (state: StoreType): PopularState => state.popular
 
 const getPopularMovies = createSelector(popularStoreSelector, ({ data }) => data)
 
-export { popularStoreSelector, getPopularMovies }
+const getPopulatMovieByID = (searchID: number) =>
+  createSelector(getPopularMovies, (data) => data.find(({ id }) => id === searchID))
+
+export { popularStoreSelector, getPopularMovies, getPopulatMovieByID }

@@ -28,6 +28,10 @@ class AuthApi {
   public registration(params: { email: string; password: string; fullName: string }) {
     return this.api.post('/users', params)
   }
+
+  public editFilm(id: string) {
+    return this.api.post('/film/edit', { id })
+  }
 }
 
 const api = new ApiService('http://localhost:3000')

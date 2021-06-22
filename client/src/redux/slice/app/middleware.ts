@@ -11,6 +11,7 @@ import { watchLater as watchLaterStore, favourite as favouriteStore } from '../s
 import { AppActionTypes } from './types'
 import { authApi } from '../../../api/AuthApi'
 import { setStorageValue } from '../../../utils/localStorage'
+import { getPopulatMoviewData } from '../popular'
 
 const registration = createAsyncThunk(
   AppActionTypes.REGISTRATION,
@@ -65,10 +66,13 @@ const loadApp = createAsyncThunk(AppActionTypes.LOAD, async (_, { dispatch }) =>
   const { q = '' } = parse(window.location.search)
   const { watchLater, favourite, token } = getAllStorageVars()
 
-  await dispatch(setSearchText(q))
-  await dispatch(watchLaterStore.actions.setData(watchLater || []))
-  await dispatch(favouriteStore.actions.setData(favourite || []))
-  await dispatch(validateToken(token || ''))
+  await Promise.all([
+    dispatch(getPopulatMoviewData()),
+    dispatch(setSearchText(q)),
+    dispatch(watchLaterStore.actions.setData(watchLater || [])),
+    dispatch(favouriteStore.actions.setData(favourite || [])),
+    dispatch(validateToken(token || '')),
+  ])
 })
 
 export { loadApp, validateToken, checkLoginForm, registration }

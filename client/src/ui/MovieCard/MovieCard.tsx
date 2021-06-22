@@ -23,6 +23,7 @@ const MovieCard: React.FC<MovieCardType> = memo(function MovieCard(props) {
     isInFavouriteList = false,
     isInWatchList = false,
     id,
+    isWithoutBottomTab = false,
   } = props
 
   const [withTrailer, setTrailerStatus] = useState(true)
@@ -56,11 +57,15 @@ const MovieCard: React.FC<MovieCardType> = memo(function MovieCard(props) {
       hoverable
       cover={poster_path ? <PosterImg alt={title} src={posterSrc} /> : <SkeletonImage />}
       bodyStyle={{ padding: '10px' }}
-      actions={[
-        <FavouriteComponent onClick={onLikeWrapper} />,
-        <WatchComponent onClick={onWatchLaterWrapper} />,
-        <YouTubeComponent disabled={!withTrailer} onClick={onYouTubeClick} />,
-      ]}
+      actions={
+        isWithoutBottomTab
+          ? []
+          : [
+              <FavouriteComponent onClick={onLikeWrapper} />,
+              <WatchComponent onClick={onWatchLaterWrapper} />,
+              <YouTubeComponent disabled={!withTrailer} onClick={onYouTubeClick} />,
+            ]
+      }
     >
       <Title>{title}</Title>
       <Overview title={description}>{description}</Overview>
