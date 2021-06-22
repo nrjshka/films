@@ -2,6 +2,7 @@ import { MovieType } from '../models'
 
 type ApiHeaders = {
   'Content-Type'?: string
+  Authorization?: string
 }
 
 type ApiQuery = {

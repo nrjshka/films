@@ -16,6 +16,6 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async test() {
-    return 'Success!';
+    return true;
   }
 }

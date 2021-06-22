@@ -7,4 +7,8 @@ const appStateSelector = (state: StoreType): AppState => state.app
 
 const isAppLoaded = createSelector(appStateSelector, ({ isLoading }) => isLoading)
 
-export { appStateSelector, isAppLoaded }
+const userSelector = createSelector(appStateSelector, ({ user }) => user)
+
+const isUserAuthorizedSelector = createSelector(userSelector, ({ isAuthorized }) => isAuthorized)
+
+export { appStateSelector, isAppLoaded, isUserAuthorizedSelector }

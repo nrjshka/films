@@ -88,6 +88,6 @@ class ApiService {
       .catch(this.errorHandler) as Promise<T>
 }
 
-const api = new ApiService('http://localhost:3000') //'/api')
+const api = new ApiService(process.env.BACKEND_URL) // change
 
 export { ApiService, api }
