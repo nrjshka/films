@@ -8,6 +8,7 @@ type PopularState = {
 
 enum PopularActionTypes {
   GET_DATA = 'POPULAR/GET/DATA',
+  CREATE = 'FILM/CREATE',
 }
 
 export { PopularActionTypes }

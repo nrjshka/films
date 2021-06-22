@@ -1,3 +1,4 @@
+import { MovieType } from '../models'
 import { ApiService } from './ApiService'
 
 class AuthApi {
@@ -29,8 +30,12 @@ class AuthApi {
     return this.api.post('/users', params)
   }
 
-  public editFilm(id: string) {
-    return this.api.post('/film/edit', { id })
+  public editFilm(id: string, data: Partial<MovieType>) {
+    return this.api.post('/film/edit', { id, ...data })
+  }
+
+  public createFilm(data: Partial<MovieType>) {
+    return this.api.post('/film', data)
   }
 }
 

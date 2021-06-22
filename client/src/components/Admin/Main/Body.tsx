@@ -1,10 +1,10 @@
 import React from 'react'
 import { Form } from 'antd'
 import { RouteComponentProps } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import styled from 'styled-components'
-import { getPopulatMovieByID } from '../../../redux'
+import { getPopulatMovieByID, updateFilm } from '../../../redux'
 
 const Container = styled.article`
   display: grid;
@@ -73,13 +73,19 @@ const keyMap = [
 
 const Body: React.FC<RouteComponentProps<{ command: 'edit' | 'create'; id?: string }>> = (props) => {
   const { command, id = 0 } = props.match.params
+  const dispatch = useDispatch()
 
   const isEditMode = command === 'edit'
 
   const game = useSelector(getPopulatMovieByID(Number(id)))
 
-  const onSubmit = (value: any) => {
-    console.log(value)
+  const onSubmit = async (value: any) => {
+    const nonNullValue = Object.keys(value)
+      .filter((key) => !!value[key])
+      .reduce((acc, v) => ({ ...acc, [v]: value[v] }), {})
+
+    // @ts-ignore
+    await dispatch(updateFilm({ type: command, id, data: nonNullValue }))
   }
 
   const isValueAvailable = !!game && isEditMode
