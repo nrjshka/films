@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  BeforeInsert,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Film extends BaseEntity {
@@ -8,12 +16,37 @@ export class Film extends BaseEntity {
   @Column({ length: 250 })
   title: string;
 
+  @Column({ length: 250 })
+  original_title: string;
+
   @Column()
   description: string;
 
-  @Column({ type: 'integer' })
-  release_year: number;
+  @Column()
+  release_date: string;
 
   @Column({ default: '0' })
-  rating: number;
+  vote_average: number;
+
+  @Column({ default: false })
+  adult: boolean;
+
+  @Column({ default: null })
+  poster_path: string | null;
+
+  @Column({ default: null })
+  backdrop_path: string | null;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @BeforeInsert()
+  setTitle() {
+    this.original_title = this.title;
+  }
 }
