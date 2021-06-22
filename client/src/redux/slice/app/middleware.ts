@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { parse } from 'query-string'
 
-import { getAllStorageVars } from '../../../utils'
+import { appHistory, getAllStorageVars } from '../../../utils'
 
 import { setSearchText } from '../search'
 
@@ -11,6 +11,19 @@ import { watchLater as watchLaterStore, favourite as favouriteStore } from '../s
 import { AppActionTypes } from './types'
 import { authApi } from '../../../api/AuthApi'
 import { setStorageValue } from '../../../utils/localStorage'
+
+const registration = createAsyncThunk(
+  AppActionTypes.REGISTRATION,
+  async (params: { email: string; password: string; fullName: string }, { rejectWithValue }) => {
+    try {
+      await authApi.registration(params)
+
+      appHistory.replace('/admin')
+    } catch (e) {
+      return rejectWithValue({ message: 'Error with registration' })
+    }
+  },
+)
 
 const checkLoginForm = createAsyncThunk(
   AppActionTypes.LOGIN,
@@ -58,4 +71,4 @@ const loadApp = createAsyncThunk(AppActionTypes.LOAD, async (_, { dispatch }) =>
   await dispatch(validateToken(token || ''))
 })
 
-export { loadApp, validateToken, checkLoginForm }
+export { loadApp, validateToken, checkLoginForm, registration }

@@ -9,7 +9,8 @@ type AppState = {
 enum AppActionTypes {
   LOAD = 'APP/LOAD',
   TOKEN = 'APP/USER/TOKEN',
-  LOGIN = 'APP/USER/LOGIn',
+  LOGIN = 'APP/USER/LOGIN',
+  REGISTRATION = 'APP/USER/REGISTRATION',
 }
 
 export { AppActionTypes }

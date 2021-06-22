@@ -24,6 +24,10 @@ class AuthApi {
   public login(params: { email: string; password: string }) {
     return this.api.post('/auth', params)
   }
+
+  public registration(params: { email: string; password: string; fullName: string }) {
+    return this.api.post('/users', params)
+  }
 }
 
 const api = new ApiService('http://localhost:3000')
