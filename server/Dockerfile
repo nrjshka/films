@@ -1,7 +1,7 @@
 FROM node:12
 
 # Creating our workdir
-WORKDIR /nextserver
+WORKDIR /usr/src/nextserver
 
 COPY package*.json ./
 
