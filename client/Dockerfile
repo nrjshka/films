@@ -1,4 +1,4 @@
-FROM node:12.13.1 as build_films
+FROM node:14.17.1 as build_films
 
 WORKDIR /films
 
