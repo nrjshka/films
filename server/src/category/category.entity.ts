@@ -1,4 +1,4 @@
-import { FilmCategory } from './../film_category/film_category.entity';
+import { Film } from 'src/film/film.entity';
 import {
   BaseEntity,
   Column,
@@ -6,7 +6,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -17,8 +18,9 @@ export class Category extends BaseEntity {
   @Column({ length: 25 })
   name: string;
 
-  @OneToMany(() => FilmCategory, (filmCategory) => filmCategory.category)
-  filmCategories: FilmCategory[];
+  @ManyToMany(() => Film, (film) => film.categories)
+  @JoinTable()
+  films: Film[];
 
   @Column()
   @CreateDateColumn()

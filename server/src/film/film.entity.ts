@@ -1,4 +1,4 @@
-import { FilmCategory } from './../film_category/film_category.entity';
+import { Category } from 'src/category/category.entity';
 import {
   BaseEntity,
   BeforeInsert,
@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -40,11 +40,11 @@ export class Film extends BaseEntity {
   @Column({ default: null })
   backdrop_path: string | null;
 
-  @Column()
-  film_category_id: number;
-  @ManyToOne(() => FilmCategory, (filmCategory) => filmCategory.films)
-  @JoinColumn({ name: 'film_category_id' })
-  filmCategory: FilmCategory;
+  @ManyToMany(() => Category, (category) => category.films, {
+    cascade: true,
+  })
+  @JoinTable()
+  categories: Category[];
 
   @Column()
   @CreateDateColumn()

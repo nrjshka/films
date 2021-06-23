@@ -1,6 +1,7 @@
 import { CreateFilmDto, EditFilmDto, FilterFilmDto } from './dto/film.dto';
 import { Injectable } from '@nestjs/common';
 import { Film } from './film.entity';
+import { Category } from 'src/category/category.entity';
 
 @Injectable()
 export class FilmService {
@@ -13,9 +14,16 @@ export class FilmService {
   }
 
   async edit(editedDto: EditFilmDto) {
-    const { id, ...restKeys } = editedDto;
+    const { id, categories, ...restKeys } = editedDto;
 
     const film = await Film.findOne(id);
+
+    if (!!categories && !!categories.length) {
+      const updateCategories = await Category.findByIds(categories);
+      film.categories = updateCategories;
+
+      await film.save();
+    }
 
     for (let key in restKeys) {
       if (key in film) {
@@ -34,6 +42,7 @@ export class FilmService {
       order: {
         id: 'DESC',
       },
+      relations: ['categories'],
       take: 20,
     });
   }
@@ -45,6 +54,7 @@ export class FilmService {
       order: {
         id: 'DESC',
       },
+      relations: ['categories'],
       where: {
         title: filter,
       },

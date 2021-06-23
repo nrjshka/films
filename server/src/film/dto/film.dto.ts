@@ -52,4 +52,7 @@ export class EditFilmDto {
 
   @IsOptional()
   backdrop_path: string | null;
+
+  @IsOptional()
+  categories: number[];
 }
