@@ -1,11 +1,11 @@
 FROM node:12
 
 # Creating our workdir
-WORKDIR /usr/src/app
+WORKDIR /nextserver
 
 COPY package*.json ./
 
-RUN yarn install
+RUN yarn install --network-timeout=30000
 
 COPY . .
 
