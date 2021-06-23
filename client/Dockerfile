@@ -4,7 +4,8 @@ WORKDIR /films
 
 COPY package*.json ./
 
-RUN yarn install
+RUN yarn install --network-timeout=30000
+
 
 COPY . .
 
