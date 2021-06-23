@@ -4,8 +4,6 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
   ManyToMany,
   JoinTable,
 } from 'typeorm';
@@ -21,12 +19,4 @@ export class Category extends BaseEntity {
   @ManyToMany(() => Film, (film) => film.categories)
   @JoinTable()
   films: Film[];
-
-  @Column()
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @Column()
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

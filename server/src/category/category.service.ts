@@ -11,4 +11,12 @@ export class CategoryService {
 
     return category;
   }
+
+  async getAll() {
+    return Category.find({
+      order: {
+        category_id: 'DESC',
+      },
+    });
+  }
 }
