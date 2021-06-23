@@ -5,7 +5,7 @@ WORKDIR /nextserver
 
 COPY package*.json ./
 
-RUN yarn install --network-timeout=30000
+RUN yarn install
 
 COPY . .
 
