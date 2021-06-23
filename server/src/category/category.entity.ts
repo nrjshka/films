@@ -1,3 +1,4 @@
+import { FilmCategory } from './../film_category/film_category.entity';
 import {
   BaseEntity,
   Column,
@@ -5,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -14,6 +16,9 @@ export class Category extends BaseEntity {
 
   @Column({ length: 25 })
   name: string;
+
+  @OneToMany(() => FilmCategory, (filmCategory) => filmCategory.category)
+  filmCategories: FilmCategory[];
 
   @Column()
   @CreateDateColumn()
