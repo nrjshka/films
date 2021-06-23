@@ -1,10 +1,12 @@
 import React from 'react'
-import { Form } from 'antd'
+import { Form, Select } from 'antd'
 import { RouteComponentProps } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 
 import styled from 'styled-components'
-import { getPopulatMovieByID, updateFilm } from '../../../redux'
+import { getPopulatMovieByID, updateFilm, getCategories } from '../../../redux'
+
+const { Option } = Select
 
 const Container = styled.article`
   display: grid;
@@ -78,6 +80,7 @@ const Body: React.FC<RouteComponentProps<{ command: 'edit' | 'create'; id?: stri
   const isEditMode = command === 'edit'
 
   const game = useSelector(getPopulatMovieByID(Number(id)))
+  const categories = useSelector(getCategories)
 
   const onSubmit = async (value: any) => {
     const nonNullValue = Object.keys(value)
@@ -106,6 +109,19 @@ const Body: React.FC<RouteComponentProps<{ command: 'edit' | 'create'; id?: stri
             </FormStyles.Item>
           </InputContainer>
         ))}
+
+        <InputContainer>
+          <label>Category: </label>
+          <FormStyles.Item name="categories" initialValue={game?.categories.map(({ name }) => name)}>
+            <Select mode="multiple">
+              {categories.map((category) => (
+                <Option key={category.category_id} value={String(category.category_id)}>
+                  {category.name}
+                </Option>
+              ))}
+            </Select>
+          </FormStyles.Item>
+        </InputContainer>
         <button type="submit">Submit</button>
       </FormStyles>
     </Container>

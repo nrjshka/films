@@ -1,3 +1,5 @@
+import { CategoryType } from './category'
+
 type MovieType = {
   id: number
   original_title: string
@@ -11,6 +13,7 @@ type MovieType = {
   popularity: number
   vote_count: number
   video: boolean
+  categories: CategoryType[]
   poster_path: string | null
   backdrop_path: string | null
 }
@@ -29,6 +32,7 @@ const movieMockNowYouSee: MovieType = {
   backdrop_path: '/zrAO2OOa6s6dQMQ7zsUbDyIBrAP.jpg',
   popularity: 29.737342,
   vote_count: 684,
+  categories: [],
   video: false,
   vote_average: 6.64,
 }
@@ -43,6 +47,7 @@ const moviewMockSuicide: MovieType = {
   id: 297761,
   original_title: 'Suicide Squad',
   original_language: 'en',
+  categories: [],
   title: 'Suicide Squad',
   backdrop_path: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg',
   popularity: 48.261451,

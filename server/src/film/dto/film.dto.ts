@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsDate,
   IsDateString,
   IsNotEmpty,
@@ -54,5 +55,6 @@ export class EditFilmDto {
   backdrop_path: string | null;
 
   @IsOptional()
+  @IsString({ each: true })
   categories: number[];
 }

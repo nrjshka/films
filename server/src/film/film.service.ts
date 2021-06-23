@@ -18,7 +18,7 @@ export class FilmService {
 
     const film = await Film.findOne(id);
 
-    if (!!categories && !!categories.length) {
+    if (!!categories) {
       const updateCategories = await Category.findByIds(categories);
       film.categories = updateCategories;
 

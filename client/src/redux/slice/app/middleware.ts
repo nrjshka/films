@@ -12,6 +12,7 @@ import { AppActionTypes } from './types'
 import { authApi } from '../../../api/AuthApi'
 import { setStorageValue } from '../../../utils/localStorage'
 import { getPopulatMoviewData } from '../popular'
+import { fetchAllCategories } from '../categories/middleware'
 
 const registration = createAsyncThunk(
   AppActionTypes.REGISTRATION,
@@ -72,6 +73,7 @@ const loadApp = createAsyncThunk(AppActionTypes.LOAD, async (_, { dispatch }) =>
     dispatch(watchLaterStore.actions.setData(watchLater || [])),
     dispatch(favouriteStore.actions.setData(favourite || [])),
     dispatch(validateToken(token || '')),
+    dispatch(fetchAllCategories()),
   ])
 })
 

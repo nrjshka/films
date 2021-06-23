@@ -6,4 +6,9 @@ type CategoriesStore = {
   data: CategoryType[]
 }
 
+enum CategoriesActionTypes {
+  LOAD = 'CATEGORIES/LOAD',
+}
+
 export type { CategoriesStore }
+export { CategoriesActionTypes }
