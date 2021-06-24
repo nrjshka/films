@@ -3,7 +3,7 @@ FROM node:12
 # Creating our workdir
 WORKDIR /usr/src/nextserver
 
-COPY package*.json ./
+COPY package*.json yarn.lock ./
 
 RUN yarn install
 
