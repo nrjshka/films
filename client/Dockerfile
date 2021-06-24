@@ -1,8 +1,8 @@
-FROM node:14.17.1 as build_films
+FROM node:12.13.1 as build_films
 
 WORKDIR /films
 
-COPY package*.json ./
+COPY package*.json yarn.lock ./
 
 RUN yarn install --network-timeout=30000
 
